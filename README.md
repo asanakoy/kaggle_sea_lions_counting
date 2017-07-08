@@ -93,9 +93,10 @@ run all cells in `notebooks/generate_gt_heatmaps.ipynb`
 7. Generate tfrecords for train/val/test: run `python data/generate_tfrecords.py`
     - check that tfrecords are correctly generated: run `python data/records.py`
 
-7. Run training `sh run_training.sh`
+7. Run training `sh run_training.sh`.  
+This model at *95000* iterations gave me **RMSE 13.7830/13.4578 on Public/Private test**.
 
-8. Run predict using 5 different offsets (paddings) for test images `sh run_predict_with_5_different_paddings.sh`.
+8. Run predict using 5 different offsets (padding) for test images `sh run_predict_with_5_different_paddings.sh`.
 Submission file will be generated and saved to `$ROOT_DIR/predictions`
 
 
