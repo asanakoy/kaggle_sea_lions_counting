@@ -1,7 +1,7 @@
 # The code for the Kaggle competition "NOAA Fisheries Steller Sea Lion Population Count".
 https://www.kaggle.com/c/noaa-fisheries-steller-sea-lion-population-count
 
-Our team  me([artem.sanakoev][1]) and [DmitryKotovenko][2]) scored **2-nd place** on the Public leaderboard and **4-th place** on Private.
+Our team  (me([artem.sanakoev][1]) and [DmitryKotovenko][2]) scored **2-nd place** on the Public leaderboard and **4-th place** on the Private.
 
 
 ## Short description of the solution
@@ -14,7 +14,7 @@ GT count for each tile was generated as a sum over heatmap (to overcome cases wi
 We set the standard deviation to be 50 at least for each Gaussian and adjust it according to size of the animals from different classes (
 multiplied by 2 for adult males and by 0.5 for pups).
 
-<a href="https://ibb.co/hhAda5">GT Gaussians for tile</a>
+[GT Gaussians for tile](https://ibb.co/hhAda5)  
 ![GT Gaussians for tile][3]
 
 
@@ -30,7 +30,7 @@ Then we fine-tuned the model on 299x299 image tiles with Adam optimizer.
 
 **Scale augmentations:** one model without them, one model with 0.83-1.25 random scaling, one model with 0.66 - 1.5 random scaling.
 
-<a href="https://ibb.co/kVhwTQ">RMSE on val for 3 best models</a>
+[RMSE on val for 3 best models](https://ibb.co/kVhwTQ)  
 ![RMSE on val for 3 best models][4]
 
 
@@ -67,18 +67,18 @@ But it didn't work out.   I reckon, the reason is the high variation in terrain 
 
 ### Setup
 
-0. Set up the following folder structure:
+0. Setup the following folder structure:
 - ROOT_DIR
     - checkpoints
     - out_preds
     - predictions
     - kaggle_sea_lions_counting  - this is the cloned repository
 
-1. `mv kaggle_sea_lions_counting/data ${ROOT_DIR}/data`
+1. Move data folder to the ${ROOT_DIR}: `mv kaggle_sea_lions_counting/data ${ROOT_DIR}/data`
 
-2.
+2. Setup paths:
 - Set your *ROO_TDIR* path in `config.py`
-- Donwload tensorflow slim models (at least inception_resnet_v2) and set the path to it in `config.py`
+- Donwload tensorflow slim models (at least inception_resnet_v2) and set the path to it in `config.py` 
 
 3. Downsample test images to scale=0.5 (decrease the size on each dimension in 2 times)
 `python resize_images.py`
@@ -102,7 +102,7 @@ Submission file will be generated and saved to `$ROOT_DIR/predictions`
 ### Misc
 
 - `data/make_ensemble.py` generates the final submission which gave us the 2/4-th place in public/private test.
-But to run it you need to train a whole bunch of different models first:P
+But to run it you need to train a whole bunch of different models first :P
 
 - `examples_how_to_run_scripts.txt` contains some examples how to use different parameters of the scripts
 
