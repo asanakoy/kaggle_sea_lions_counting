@@ -67,35 +67,35 @@ But it didn't work out.   I reckon, the reason is the high variation in terrain 
 
 ### Setup
 
--2. Set up the following folder structure:
+0. Set up the following folder structure:
 - ROOT_DIR
     - checkpoints
     - out_preds
     - predictions
     - kaggle_sea_lions_counting  - this is the cloned repository
 
--1. `mv kaggle_sea_lions_counting/data ${ROOT_DIR}/data`
+1. `mv kaggle_sea_lions_counting/data ${ROOT_DIR}/data`
 
-0.
+2.
 - Set your *ROO_TDIR* path in `config.py`
 - Donwload tensorflow slim models (at least inception_resnet_v2) and set the path to it in `config.py`
 
-1. Downsample test images to scale=0.5 (decrease the size on each dimension in 2 times)
+3. Downsample test images to scale=0.5 (decrease the size on each dimension in 2 times)
 `python resize_images.py`
 
-2. Remove mismatched images from train: `python remove_mismatched_images.py`
+4. Remove mismatched images from train: `python remove_mismatched_images.py`
 
-3. Translate black regions from train_dotted to train : `python preproc_black_regions_train.py`
+5. Translate black regions from train_dotted to train : `python preproc_black_regions_train.py`
 
-4. Prepare GT heatmaps for training (using GT coordinates of the lions):
+6. Prepare GT heatmaps for training (using GT coordinates of the lions):
 run all cells in `notebooks/generate_gt_heatmaps.ipynb`
 
-5. Generate tfrecords for train/val/test: run `python data/generate_tfrecords.py`
+7. Generate tfrecords for train/val/test: run `python data/generate_tfrecords.py`
     - check that tfrecords are correctly generated: run `python data/records.py`
 
-6. Run training `sh run_training.sh`
+7. Run training `sh run_training.sh`
 
-7. Run predict using 5 different offsets (paddings) for test images `sh run_predict_with_5_different_paddings.sh`.
+8. Run predict using 5 different offsets (paddings) for test images `sh run_predict_with_5_different_paddings.sh`.
 Submission file will be generated and saved to `$ROOT_DIR/predictions`
 
 
@@ -109,5 +109,5 @@ But to run it you need to train a whole bunch of different models first:P
 
   [1]: https://www.kaggle.com/asanakoev
   [2]: https://www.kaggle.com/chelovekparohod
-  [2]: https://preview.ibb.co/bJ5Bv5/Screenshot_from_2017_06_28_16_28_57.png
-  [3]: https://preview.ibb.co/jx6O8Q/Screenshot_from_2017_06_28_17_02_17.png
+  [3]: https://preview.ibb.co/bJ5Bv5/Screenshot_from_2017_06_28_16_28_57.png
+  [4]: https://preview.ibb.co/jx6O8Q/Screenshot_from_2017_06_28_17_02_17.png
