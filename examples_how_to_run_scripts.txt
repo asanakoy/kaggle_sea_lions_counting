@@ -1,0 +1,27 @@
+##### TRAIN #####
+CUDA_VISIBLE_DEVICES=2 python run_segmentation_reg_tfrecords.py --model=inception_resnet_v2 --test_iter=1000 --snapshot_iter=1000 --lr=1e-5 --optimizer=adam --batch_size=32 --tile_size=299 --pool=avg --extra_fc=256 --aug
+
+CUDA_VISIBLE_DEVICES=2 python run_segmentation_reg_tfrecords.py --model=inception_resnet_v2 --test_iter=500 --snapshot_iter=500 --lr=1e-5 --batch_size=32 --tile_size=299 --pool=avg --extra_fc=256 --aug --full_scale_aug --min_scale_aug=1.5 --max_scale_aug=2.5
+CUDA_VISIBLE_DEVICES=0 python run_segmentation_reg_tfrecords.py --model=inception_resnet_v2 --test_iter=500 --snapshot_iter=500 --lr=1e-5 --batch_size=32 --tile_size=299 --pool=avg --extra_fc=256 --aug --full_scale_aug --min_scale_aug=1.0 --max_scale_aug=2.0
+
+CUDA_VISIBLE_DEVICES=1 python run_segmentation_reg_tfrecords.py --model=inception_resnet_v2 --test_iter=500 --snapshot_iter=500 --lr=1e-5 --batch_size=32 --tile_size=299 --pool=avg --extra_fc=256 --aug
+
+CUDA_VISIBLE_DEVICES=1 python run_segmentation_reg_tfrecords.py --model=inception_resnet_v2 --suf=_3 --test_iter=1000 --snapshot_iter=500 --lr=1e-5 --batch_size=32 --tile_size=299 --pool=avg --extra_fc=256 --aug --full_scale_aug --min_scale_aug=0.5 --max_scale_aug=1.5 --repeat_tiles
+
+
+
+##### PREDICT #####
+CUDA_VISIBLE_DEVICES=1 python predict_from_tfrecords.py --model=inception_resnet_v2 --snapshot_iter=63000 --suf=_tile299_avgpool_fc256_aug2_2_coordsv0 --batch_size=32 --pool=avg --tile_size=299 --scale=0.5 --extra_fc=256
+
+CUDA_VISIBLE_DEVICES=0 python predict_from_tfrecords.py --model=inception_resnet_v2 --snapshot_iter=133000 --suf=_tile299_avgpool_fc256 --batch_size=32 --extra_fc=256 --pool=avg --tile_size=299 --scale=0.5 --preds_out=test_inception_resnet_v2_tile299_avgpool_fc256_scale0.5_it133000k
+
+CUDA_VISIBLE_DEVICES=2 python predict_from_tfrecords.py --model=inception_resnet_v2 --snapshot_iter=102000 --suf=_tile299_avgpool_fc256_aug --batch_size=32 --extra_fc=256 --pool=avg --tile_size=299 --scale=0.5
+
+CUDA_VISIBLE_DEVICES=1 python predict_from_tfrecords.py --model=inception_resnet_v2 --snapshot_iter=117000 --suf=_tile598_avgpool_fc256 --batch_size=16 --extra_fc=256 --pool=avg --tile_size=598 --scale=0.5 --preds_out=test_inception_resnet_v2_tile598_avgpool_fc256_aug_scale0.5_it117k
+
+CUDA_VISIBLE_DEVICES=1 python predict_from_tfrecords.py --model=inception_resnet_v2 --snapshot_iter=23000 --suf=_tile299_avgpool_aug2_scaleaug-0.8-1.2 --batch_size=32 --pool=avg --tile_size=299 --scale=0.5 --extra_fc=256
+
+
+
+#### TEST on train/val ####
+CUDA_VISIBLE_DEVICES=2 python test_new_tfrecords.py --model=inception_resnet_v2 --snapshot_iter=169000 --batch_size=32 --tile_size=299 --pool=avg --extra_fc=256 --suf=_tile299_avgpool_fc256_aug2_fullscaleaug-0.5-1.5_coordsv0 ---full_scale_aug --min_scale_aug=0.5 --max_scale_aug=1.5

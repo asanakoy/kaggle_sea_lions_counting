@@ -1,0 +1,6 @@
+*.bak
+*.mat
+*.pyc
+.idea
+.ipynb_checkpoints
+tags
