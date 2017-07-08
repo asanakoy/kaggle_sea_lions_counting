@@ -4,7 +4,7 @@ https://www.kaggle.com/c/noaa-fisheries-steller-sea-lion-population-count
 Our team  (me([artem.sanakoev][1]) and [DmitryKotovenko][2]) scored **2-nd place** on the Public leaderboard and **4-th place** on the Private.
 
 
-## Short description of the solution
+# Short description of the solution
 
 
 Preprocessing
